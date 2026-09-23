@@ -39,6 +39,15 @@ export class NativeTaskHasherImpl implements TaskHasherImpl {
     taskIds: Set<string>;
     plans: ReturnType<HashPlanner['getPlansReference']>;
   } | null = null;
+  /**
+   * Plans an earlier selection left in the daemon. Unlike the planning
+   * context's, these outlive a command, so each use checks them against the
+   * task graph it was given.
+   */
+  private selectionPlans: {
+    taskGraph: TaskGraph;
+    plans: ReturnType<HashPlanner['getPlansReference']>;
+  } | null = null;
 
   constructor(
     workspaceRoot: string,
@@ -185,7 +194,21 @@ export class NativeTaskHasherImpl implements TaskHasherImpl {
         return subset;
       }
     }
+    const selected = this.selectionPlans;
+    if (selected && plannedAlike(selected.taskGraph, taskGraph, taskIds)) {
+      const subset = subsetHashPlans(selected.plans, taskIds);
+      if (subset) {
+        return subset;
+      }
+    }
     return this.planner.getPlansReference(taskIds, taskGraph);
+  }
+
+  adoptSelectionPlans(
+    plans: ReturnType<HashPlanner['getPlansReference']>,
+    taskGraph: TaskGraph
+  ): void {
+    this.selectionPlans = { plans, taskGraph };
   }
 }
 
@@ -197,18 +220,56 @@ export class NativeTaskHasherImpl implements TaskHasherImpl {
  * invalidate the plans of the rest.
  */
 function taskGraphFingerprint(taskGraph: TaskGraph): string {
-  const parts: string[] = [];
-  for (const id of Object.keys(taskGraph.tasks).sort()) {
-    const task = taskGraph.tasks[id];
-    parts.push(
-      id,
-      task.target.project,
-      task.target.target,
-      task.target.configuration ?? '',
-      (task.outputs ?? []).join(','),
-      (taskGraph.dependencies[id] ?? []).join(','),
-      (taskGraph.continuousDependencies[id] ?? []).join(',')
+  return hashArray(
+    Object.keys(taskGraph.tasks)
+      .sort()
+      .flatMap((id) => taskSignature(taskGraph, id))
+  );
+}
+
+function taskSignature(taskGraph: TaskGraph, id: string): string[] {
+  const task = taskGraph.tasks[id];
+  return [
+    id,
+    task.target.project,
+    task.target.target,
+    task.target.configuration ?? '',
+    (task.outputs ?? []).join(','),
+    (taskGraph.dependencies[id] ?? []).join(','),
+    (taskGraph.continuousDependencies?.[id] ?? []).join(','),
+  ];
+}
+
+/**
+ * Whether `planned` gives each of `taskIds` the plan `requested` would. A plan
+ * reads its task and everything it depends on, so the whole closure is
+ * compared, not just the tasks asked for.
+ */
+export function plannedAlike(
+  planned: TaskGraph,
+  requested: TaskGraph,
+  taskIds: string[]
+): boolean {
+  const seen = new Set<string>();
+  const stack = [...taskIds];
+  while (stack.length) {
+    const id = stack.pop()!;
+    if (seen.has(id)) {
+      continue;
+    }
+    seen.add(id);
+    if (!planned.tasks[id] || !requested.tasks[id]) {
+      return false;
+    }
+    const a = taskSignature(planned, id);
+    const b = taskSignature(requested, id);
+    if (a.some((part, i) => part !== b[i])) {
+      return false;
+    }
+    stack.push(
+      ...(requested.dependencies[id] ?? []),
+      ...(requested.continuousDependencies?.[id] ?? [])
     );
   }
-  return hashArray(parts);
+  return true;
 }
