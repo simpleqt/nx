@@ -42,13 +42,23 @@ For a scenario-by-scenario explanation, see [reduce waste in CI](/docs/kb/reduce
 
 Nx runs independent tasks in parallel while respecting
 [task pipeline](/docs/concepts/task-pipeline-configuration) dependencies.
-Set a workspace-wide concurrency limit with `parallel` in `nx.json`, or use a command-line option such
-as `nx affected -t test --parallel=4` for one run.
+Set a workspace-wide limit with `parallel` in `nx.json`, or pass `--parallel=<number>` for one run.
+One machine keeps logs and artifacts in one place, but its CPU and memory cap how much can run at
+once, so CI duration grows once the task graph outgrows it.
 
-A single machine eventually becomes the bottleneck.
-[Nx Agents](/docs/features/ci-features/distribute-task-execution) distribute the task graph across
-multiple machines and dynamically assign ready tasks to available agents.
-Remote caching transfers task artifacts between machines, including back to the main job.
+The usual next step is to split work across CI jobs by hand, often one job per target:
 
-For the tradeoffs between parallelization and distribution in CI, see
-[parallelization and distribution](/docs/concepts/ci-concepts/parallelization-distribution).
+![CI tasks divided into fixed bins](../../../../assets/concepts/ci-concepts/binning.svg)
+
+Fixed bins finish at different times and leave machines idle.
+A task in one bin can depend on a task in another, so scripts have to coordinate order and cache
+availability, and the right split changes every time the project graph does.
+
+[Nx Agents](/docs/features/ci-features/distribute-task-execution) replace the bins with dynamic
+assignment.
+The main job keeps the same Nx commands it runs on one machine, and ready tasks from the task graph go
+to whichever agent has room.
+With Dynamic Task Packing, that decision uses each task's past duration and CPU and memory use.
+Remote caching moves artifacts between agents, and logs and outputs come back to the main job.
+
+![CI tasks distributed across three agents](../../../../assets/concepts/ci-concepts/3agents.svg)

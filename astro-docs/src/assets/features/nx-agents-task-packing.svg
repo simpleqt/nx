@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 730 506" font-family="Inter, system-ui, sans-serif">
+<text x="0" y="14" fill="#64748B" font-size="13" font-weight="600">Machine per task type</text>
+<text x="0" y="55" fill="#64748B" font-size="13">Unit test VM</text>
+<rect x="130" y="26" width="315" height="50" rx="4" fill="#94A3B8" fill-opacity="0.18"/>
+<rect x="131" y="26" width="178" height="11" rx="2" fill="#F59E0B"/>
+<rect x="311" y="26" width="133" height="11" rx="2" fill="#F59E0B"/>
+<rect x="131" y="39" width="133" height="11" rx="2" fill="#F59E0B"/>
+<rect x="266" y="39" width="133" height="11" rx="2" fill="#F59E0B"/>
+<rect x="131" y="52" width="88" height="11" rx="2" fill="#F59E0B"/>
+<rect x="221" y="52" width="88" height="11" rx="2" fill="#F59E0B"/>
+<rect x="311" y="52" width="88" height="11" rx="2" fill="#F59E0B"/>
+<rect x="131" y="65" width="88" height="11" rx="2" fill="#F59E0B"/>
+<rect x="221" y="65" width="88" height="11" rx="2" fill="#F59E0B"/>
+<rect x="311" y="65" width="43" height="11" rx="2" fill="#F59E0B"/>
+<text x="453" y="55" fill="#64748B" font-size="12">7 min</text>
+<text x="0" y="119" fill="#64748B" font-size="13">E2E test VM</text>
+<rect x="130" y="90" width="540" height="50" rx="4" fill="#94A3B8" fill-opacity="0.18"/>
+<rect x="131" y="90" width="268" height="11" rx="2" fill="#6366F1"/>
+<rect x="401" y="90" width="178" height="11" rx="2" fill="#6366F1"/>
+<rect x="581" y="90" width="88" height="11" rx="2" fill="#6366F1"/>
+<rect x="131" y="103" width="223" height="11" rx="2" fill="#6366F1"/>
+<rect x="356" y="103" width="133" height="11" rx="2" fill="#6366F1"/>
+<rect x="491" y="103" width="88" height="11" rx="2" fill="#6366F1"/>
+<rect x="581" y="103" width="43" height="11" rx="2" fill="#6366F1"/>
+<rect x="626" y="103" width="43" height="11" rx="2" fill="#6366F1"/>
+<text x="678" y="119" fill="#64748B" font-size="12">12 min</text>
+<text x="0" y="183" fill="#64748B" font-size="13">Build VM</text>
+<rect x="130" y="154" width="270" height="50" rx="4" fill="#94A3B8" fill-opacity="0.18"/>
+<rect x="131" y="154" width="268" height="11" rx="2" fill="#14B8A6"/>
+<rect x="131" y="167" width="178" height="11" rx="2" fill="#14B8A6"/>
+<rect x="131" y="180" width="88" height="11" rx="2" fill="#14B8A6"/>
+<text x="408" y="183" fill="#64748B" font-size="12">6 min</text>
+<text x="130" y="222" fill="#64748B" font-size="12">12 min wall clock, 25 machine-minutes</text>
+<text x="0" y="262" fill="#64748B" font-size="13" font-weight="600">Nx Cloud packing</text>
+<text x="0" y="303" fill="#64748B" font-size="13">Agent 1</text>
+<rect x="130" y="274" width="270" height="50" rx="4" fill="#94A3B8" fill-opacity="0.18"/>
+<rect x="131" y="274" width="268" height="11" rx="2" fill="#14B8A6"/>
+<rect x="131" y="287" width="268" height="11" rx="2" fill="#6366F1"/>
+<rect x="131" y="300" width="223" height="11" rx="2" fill="#6366F1"/>
+<rect x="356" y="300" width="43" height="11" rx="2" fill="#6366F1"/>
+<rect x="131" y="313" width="178" height="11" rx="2" fill="#F59E0B"/>
+<rect x="311" y="313" width="88" height="11" rx="2" fill="#F59E0B"/>
+<text x="408" y="303" fill="#64748B" font-size="12">6 min</text>
+<text x="0" y="367" fill="#64748B" font-size="13">Agent 2</text>
+<rect x="130" y="338" width="270" height="50" rx="4" fill="#94A3B8" fill-opacity="0.18"/>
+<rect x="131" y="338" width="178" height="11" rx="2" fill="#14B8A6"/>
+<rect x="311" y="338" width="88" height="11" rx="2" fill="#6366F1"/>
+<rect x="131" y="351" width="178" height="11" rx="2" fill="#6366F1"/>
+<rect x="311" y="351" width="88" height="11" rx="2" fill="#F59E0B"/>
+<rect x="131" y="364" width="133" height="11" rx="2" fill="#6366F1"/>
+<rect x="266" y="364" width="133" height="11" rx="2" fill="#F59E0B"/>
+<rect x="131" y="377" width="133" height="11" rx="2" fill="#F59E0B"/>
+<rect x="266" y="377" width="133" height="11" rx="2" fill="#F59E0B"/>
+<text x="408" y="367" fill="#64748B" font-size="12">6 min</text>
+<text x="0" y="431" fill="#64748B" font-size="13">Agent 3</text>
+<rect x="130" y="402" width="180" height="50" rx="4" fill="#94A3B8" fill-opacity="0.18"/>
+<rect x="131" y="402" width="88" height="11" rx="2" fill="#14B8A6"/>
+<rect x="221" y="402" width="88" height="11" rx="2" fill="#6366F1"/>
+<rect x="131" y="415" width="88" height="11" rx="2" fill="#F59E0B"/>
+<rect x="221" y="415" width="88" height="11" rx="2" fill="#F59E0B"/>
+<rect x="131" y="428" width="88" height="11" rx="2" fill="#F59E0B"/>
+<rect x="221" y="428" width="43" height="11" rx="2" fill="#F59E0B"/>
+<rect x="266" y="428" width="43" height="11" rx="2" fill="#6366F1"/>
+<text x="318" y="431" fill="#64748B" font-size="12">4 min</text>
+<text x="130" y="470" fill="#64748B" font-size="12">6 min wall clock, 16 machine-minutes</text>
+<rect x="130" y="487" width="12" height="12" rx="2" fill="#F59E0B"/>
+<text x="148" y="497" fill="#64748B" font-size="12">Unit test</text>
+<rect x="240" y="487" width="12" height="12" rx="2" fill="#6366F1"/>
+<text x="258" y="497" fill="#64748B" font-size="12">E2E test</text>
+<rect x="350" y="487" width="12" height="12" rx="2" fill="#14B8A6"/>
+<text x="368" y="497" fill="#64748B" font-size="12">Build</text>
+<rect x="460" y="487" width="12" height="12" rx="2" fill="#94A3B8" fill-opacity="0.18"/>
+<text x="478" y="497" fill="#64748B" font-size="12">Paid, idle capacity</text>
+</svg>

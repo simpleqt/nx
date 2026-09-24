@@ -12,6 +12,7 @@ exceptions:
   - Nx Agents
   - Enterprise
   - Nx Replay
+  - Dynamic Task Packing
   - AI
   - CI
   - CD
